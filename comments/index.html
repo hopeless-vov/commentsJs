@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+     <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+</head>
+<body>
+   
+      
+     <div class="windows">
+      <h2>Comments</h2>
+      <span>Name:</span>
+    <input type="text" placeholder="Your name" class="input" name ="name" id="name">
+    <span>Comment:</span> 
+    <input type="text" placeholder="Your comment" class="input" name ="coment" id="body">
+    <input type="submit" value ="Send" class="button" name ="sub" id="but">
+
+   </div>
+     <div id="output">
+
+ </div>
+    
+    
+    
+    <script>
+        let comments = [];
+        loadComments();
+        document.getElementById('but').onclick = function(){
+            event.preventDefault();
+            let commentName = document.getElementById('name');
+            let commentBody = document.getElementById('body');
+
+            let comment = {
+                name : commentName.value ,
+                body : commentBody.value ,
+                time :  Math.floor(Date.now()/1000)
+            }
+            commentName.value = '';
+            commentBody.value = '';
+            comments.push(comment);
+            console.log(comment);
+            saveComments();
+            showComments();
+        }
+        function saveComments() {
+            localStorage.setItem('comments', JSON.stringify(comments));
+        }
+        function loadComments() {
+            if (localStorage.getItem('comments')) comments = JSON.parse(localStorage.getItem('comments'));
+            showComments();
+        }
+        function showComments() {
+            let commentField = document.getElementById('output');
+            let out = '';
+            comments.forEach(function (item) {
+                out += `<p class="text"><em>${timeConverter(item.time)}</em></p>`;
+                out += `<p class="text1">${item.name}</p>`;
+                out += `<p class="text2">${item.body}</p>`;
+                commentField.innerHTML = out;
+            });
+
+        }
+        function timeConverter(UNIX_timestamp){
+            let a = new Date(UNIX_timestamp * 1000);
+            let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            let year = a.getFullYear();
+            let month = months[a.getMonth()];
+            let date = a.getDate();
+            let hour = a.getHours();
+            let min = a.getMinutes();
+            let sec = a.getSeconds();
+            let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+            return time;
+        }
+    </script>
+    
+</body>
+</html>

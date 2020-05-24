@@ -1,0 +1,39 @@
+
+.windows{
+     font-family: 'Quicksand', sans-serif;
+font-style: normal;
+font-weight: bold;
+    text-align: center;
+    width: 260px;
+    padding: 5px;
+    margin: 10px;
+}
+.input, .button{
+    width: 260px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.button {
+   margin-left: 6px;}
+.text1{
+    font-size: 16px;
+
+}
+.text{
+    font-size: 10px;
+       text-align: right;
+}
+.text2{
+    font-size: 14px;
+
+}
+
+#output{
+   
+    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    width: 260px;
+    padding: 5px;
+    margin: 10px;
+}
